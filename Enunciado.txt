@@ -1,0 +1,60 @@
+Sistema de Pagos Modular con Auditoría
+
+El objetivo es construir un sistema donde el núcleo no conozca las implementaciones de pago (desacoplamiento) y se gestione la seguridad de la reflexión mediante descriptores de módulo.
+1. Módulo payment.api (El Contrato)
+
+Este módulo debe definir el estándar de cómo se procesa un pago.
+
+    Paquete: com.pagos.api.
+
+    Tarea: Crear la interfaz MetodoPago con un método void procesar(double monto).
+
+    Descriptor (module-info.java): Debe hacer que el paquete com.pagos.api sea visible para cualquier otro módulo.
+
+2. Módulo payment.stripe (La Implementación)
+
+Este módulo contiene la lógica real de Stripe, pero debe permanecer oculto para el resto del sistema.
+
+    Paquete: com.pagos.stripe.
+
+    Tarea: Crear la clase StripeService que implemente MetodoPago.
+
+    Descriptor (module-info.java):
+
+        Debe requerir el módulo de la API para poder usar la interfaz.
+
+        No debe exportar su paquete (para asegurar encapsulación fuerte).
+
+        Debe declarar que provee la implementación de MetodoPago usando la clase StripeService.
+
+3. Módulo audit.logger (El Inspector)
+
+Este módulo simula una herramienta externa que necesita "mirar" dentro de otros objetos.
+
+    Paquete: com.audit.
+
+    Tarea: Crear la clase Inspector con un método analizar(Object obj). Dentro de este método, debés usar obj.getClass().getDeclaredFields() para listar los nombres de los atributos privados del objeto y usar setAccessible(true) para leer sus valores.
+
+    Descriptor (module-info.java): Solo debe existir el nombre del módulo.
+
+4. Módulo app.main (El Orquestador)
+
+Este es el punto de entrada que conecta todo.
+
+    Paquete: com.app.
+
+    Tarea: 1. Crear una clase Factura con atributos privados (ej: String id, double total). 2. Crear la clase Main que: * Use ServiceLoader para encontrar y ejecutar el servicio de pago disponible. * Instancie un Inspector y le pase un objeto Factura para analizarlo.
+
+    Descriptor (module-info.java):
+
+        Debe requerir payment.api de forma transitiva.
+
+        Debe requerir audit.logger.
+
+        Debe declarar que usa la interfaz MetodoPago.
+
+        Debe abrir (opens) el paquete com.app únicamente hacia audit.logger para que la reflexión funcione.
+
+🚨 El Desafío Técnico
+
+Una vez que termines, intentá comentar la línea opens en el módulo app.main. Si lo hiciste bien, el programa debería lanzar una excepción de seguridad (InaccessibleObjectException) al intentar ejecutar el inspector. Eso te confirmará que entendiste cómo Java protege tu código ahora.

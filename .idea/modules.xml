@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JavaModules01.iml" filepath="$PROJECT_DIR$/JavaModules01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app.main/app.main.iml" filepath="$PROJECT_DIR$/app.main/app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/audit.logger/audit.logger.iml" filepath="$PROJECT_DIR$/audit.logger/audit.logger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payment.api/payment.api.iml" filepath="$PROJECT_DIR$/payment.api/payment.api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payment.stripe/payment.stripe.iml" filepath="$PROJECT_DIR$/payment.stripe/payment.stripe.iml" />
+    </modules>
+  </component>
+</project>
