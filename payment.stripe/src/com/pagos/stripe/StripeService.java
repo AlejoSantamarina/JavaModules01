@@ -9,6 +9,6 @@ public class StripeService implements MetodoPago {
 
     @Override
     public void procesar(double monto) {
-
+        System.out.println("Monto: " + monto);
     }
 }

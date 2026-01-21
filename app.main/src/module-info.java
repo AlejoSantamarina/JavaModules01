@@ -1,6 +1,5 @@
 module app.main {
-    requires transitive payment.api;
-    requires audit.logger;
+    requires payment.api;
     uses com.pagos.api.MetodoPago;
-    opens com.app to audit.logger;
+    requires audit.logger;
 }
