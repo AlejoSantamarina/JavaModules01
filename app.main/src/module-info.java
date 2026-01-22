@@ -1,5 +1,5 @@
 module app.main {
     requires payment.api;
-    uses com.pagos.api.MetodoPago;
     requires audit.logger;
+    uses com.pagos.api.MetodoPago;
 }

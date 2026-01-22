@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="payment.api" exported="" />
     <orderEntry type="module" module-name="audit.logger" exported="" />
+    <orderEntry type="module" module-name="payment.stripe" />
   </component>
 </module>
